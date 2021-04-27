@@ -100,7 +100,12 @@ FLASHBACK TABLE ogrenciler TO BEFORE DROP; -- Ayni isimle geri getirir. Flashbac
 TRUNCATE TABLE ogrenciler; -- Tum verileri hassas bir sekilde siler (DDL yani WHERE gibi clause kelimeler kullanilamaz.)
 SELECT * FROM ogrenciler;
 
--- Tablolar aras?nda ili?ki var ise veriler nas?l silinebilir?
+/*============================== ON DELETE CASCADE =============================
+  Her defas?nda önce child tablodaki verileri silmek yerine ON DELETE CASCADE
+  silme özelli?ini aktif hale getirebiliriz.
+  Bunun için FK olan sat?r?n en sonuna ON DELETE CASCADE komutunu yazmak yeterli
+==============================================================================*/ 
+-- ========================= Tablolar aras?nda ili?ki var ise veriler nas?l silinebilir? =========================
 CREATE TABLE talebeler
 (
         id CHAR(3),  --PK
@@ -109,7 +114,6 @@ CREATE TABLE talebeler
         yazili_notu NUMBER(3),
         CONSTRAINT talebe_pk PRIMARY KEY (id)
 );
-    
 INSERT INTO talebeler VALUES(123, 'Ali Can', 'Hasan',75);
 INSERT INTO talebeler VALUES(124, 'Merve Gul', 'Ayse',85);
 INSERT INTO talebeler VALUES(125, 'Kemal Yasa', 'Hasan',85);
