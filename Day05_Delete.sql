@@ -113,7 +113,7 @@ CREATE TABLE talebeler
         veli_isim VARCHAR2(50),
         yazili_notu NUMBER(3),
         CONSTRAINT talebe_pk PRIMARY KEY (id)
-);
+); 
 INSERT INTO talebeler VALUES(123, 'Ali Can', 'Hasan',75);
 INSERT INTO talebeler VALUES(124, 'Merve Gul', 'Ayse',85);
 INSERT INTO talebeler VALUES(125, 'Kemal Yasa', 'Hasan',85);
