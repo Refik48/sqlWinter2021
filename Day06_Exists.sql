@@ -1,12 +1,11 @@
 /*=========================== EXISTS, NOT EXIST ================================
-    EXISTS operatorü bir Boolean operatördür ve true - false de?er döndürür. 
-    EXISTS operatorü s?kl?kla Subquery'lerde sat?rlar?n do?rulu?unu test etmek 
-    için kullan?l?r.
+    EXISTS operatoru bir Boolean operatordur ve true - false deger dondurur. 
+    EXISTS operatorü siklikla Subquery'lerde satirlarin dogrulugunu test etmek icin kullanilir.
     
-    E?er bir subquery (altsorgu) bir sat?r? döndürürse EXIST operatörü de TRUE 
-    de?er döndürür. Aksi takdirde, FALSE de?er döndürecektir.
+    Eger bir subquery (altsorgu) bir satiri dondururse EXIST operatoru de TRUE 
+    deger dondurur. Aksi takdirde, FALSE deger dondurecektir.
     
-    Özellikle altsorgularda h?zl? kontrol i?lemi gerçekle?tirmek için kullan?l?r
+    Ozellikle altsorgularda hizli kontrol islemi gerceklestirmek icin kullanilir
 ==============================================================================*/
 CREATE TABLE mart_satislar 
     (
@@ -41,16 +40,38 @@ CREATE TABLE mart_satislar
     DELETE FROM nisan_satislar;
     
     /* -----------------------------------------------------------------------------
-  ORNEK 1 : MART VE N?SAN aylar?nda ayn? URUN_ID ile sat?lan ürünlerin
-  URUN_ID’lerini listeleyen ve ayn? zamanda bu ürünleri MART ay?nda alan
-  MUSTERI_ISIM 'lerini listeleyen bir sorgu yaz?n?z. 
+  ORNEK 1 : MART VE NISAN aylarinda ayni URUN_ID ile satilan urunlerin
+  URUN_ID’lerini listeleyen ve ayni zamanda bu urunleri MART ayinda alan
+  MUSTERI_ISIM 'lerini listeleyen bir sorgu yaziniz. 
  -----------------------------------------------------------------------------*/       
-    -- tablolara k?sa isim vermek mümkündür. Böylece sorgular?m?z?n daha k?sa 
-    -- gözükmesini sa?labiliriz.
+    -- tablolara kisa isim vermek mumkundur. Boylece sorgularimizin daha kisa gozukmesini saglabiliriz.
+    -- AS  -> bir sutuna k?sa isim veriyor.
+    -- Bir sorgu icerisinde  tabloya da kisa isim vermek mumkun. 
+    -- tablo_Adi kisa_isim
     
     SELECT musteri_isim FROM mart_satislar
     WHERE EXISTS (SELECT urun_id FROM nisan_satislar
                                     WHERE mart_satislar.urun_id = nisan_satislar.urun_id)                                    
     
-    
+    -- WHERE urun_id IN(SELECT urun_id FROM nisan_satislar
+   --                                  WHERE mart_satislar.urun_id = nisan_satislar.urun_id);
+   
+   
+   /* -----------------------------------------------------------------------------
+  ORNEK 2 : Her iki ayda da satilan urunlerin URUN_ISIM'lerini ve bu urunleri
+  NISAN ayinda satin alan MUSTERI_ISIM'lerini listeleyen bir sorgu yaziniz. 
+ -----------------------------------------------------------------------------*/
+ 
+ 
+ /* ----------------------------------------------------------------------------
+  ORNEK3: Her iki ayda da ortak olarak satilmayan urunlerin URUN_ISIM'lerini 
+  ve bu urunleri NISAN ayinda satin alan MUSTERI_ISIM'lerini listeleyiniz. 
+ -----------------------------------------------------------------------------*/
+ 
+ 
+ 
+ 
+ 
+ 
+ 
     
