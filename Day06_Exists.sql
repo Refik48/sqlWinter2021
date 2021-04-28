@@ -51,7 +51,7 @@ CREATE TABLE mart_satislar
     
     SELECT musteri_isim FROM mart_satislar
     WHERE EXISTS (SELECT urun_id FROM nisan_satislar
-                                    WHERE mart_satislar.urun_id = nisan_satislar.urun_id)                                    
+                                    WHERE mart_satislar.urun_id = nisan_satislar.urun_id);
     
     -- WHERE urun_id IN(SELECT urun_id FROM nisan_satislar
    --                                  WHERE mart_satislar.urun_id = nisan_satislar.urun_id);
@@ -62,12 +62,18 @@ CREATE TABLE mart_satislar
   NISAN ayinda satin alan MUSTERI_ISIM'lerini listeleyen bir sorgu yaziniz. 
  -----------------------------------------------------------------------------*/
  
+ SELECT urun_isim, musteri_isim FROM nisan_satislar nisan -- Buraya nisan diye yazdigim yer nisan_satislar yerine gecti (nisan = nisan_satislar)
+ WHERE EXISTS (SELECT urun_id FROM mart_satislar mart -- Ayni sey mart icin de gecerli (mart = mart_satislar). Altta ki komutta bu isimleri kullanabilirim.
+                                WHERE mart.urun_id = nisan.urun_id); -- nisan ve mart sadece bu sorgu icin gecerli isimler oluyor.
  
  /* ----------------------------------------------------------------------------
   ORNEK3: Her iki ayda da ortak olarak satilmayan urunlerin URUN_ISIM'lerini 
   ve bu urunleri NISAN ayinda satin alan MUSTERI_ISIM'lerini listeleyiniz. 
  -----------------------------------------------------------------------------*/
  
+ SELECT urun_isim, musteri_isim FROM nisan_satislar nisan -- Buraya nisan diye yazdigim yer nisan_satislar yerine gecti (nisan = nisan_satislar)
+ WHERE NOT EXISTS (SELECT urun_id FROM mart_satislar mart -- Ayni sey mart icin de gecerli (mart = mart_satislar). Altta ki komutta bu isimleri kullanabilirim.
+                                          WHERE mart.urun_id = nisan.urun_id); -- nisan ve mart sadece bu sorgu icin gecerli isimler oluyor.
  
  
  
