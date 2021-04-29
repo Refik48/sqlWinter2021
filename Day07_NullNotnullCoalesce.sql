@@ -1,8 +1,8 @@
 /*===================== IS NULL, IS NOT NULL, COALESCE ========================
-    IS NULL, ve IS NOT NULL BOOLEAN operatörleridir. Bir ifadenin NULL olup olmad???n? kontrol ederler.  
+    IS NULL, ve IS NOT NULL BOOLEAN operatorleridir. Bir ifadenin NULL olup olmadigini kontrol ederler.  
     
     COALESCE ise bir fonksiyondur ve içerisindeki parameterelerden NULL olmayan 
-    ilk ifadeyi döndürür. E?er ald??? tüm ifadeler NULL ise NULL döndürürür.
+    ilk ifadeyi dondurur. Eger aldigi tum ifadeler NULL ise NULL dondurur.
 
     COALESCE(ifade1, ifade2, .....ifadeN)
 ==============================================================================*/
@@ -53,7 +53,7 @@ CREATE TABLE insanlar
     WHERE isim IS NULL;
     
     UPDATE insanlar
-    SET adres = 'Henuz isim girilmedi'
+    SET adres = 'Henuz adres girilmedi'
     WHERE adres IS NULL;
     
     UPDATE insanlar
@@ -66,13 +66,4 @@ CREATE TABLE insanlar
             adres = COALESCE (adres, 'Henuz adres girilmedi'),
             ssn = COALESCE (ssn, 'NO SSN');
 
-
-
-
-
-
-
-
-
-
-
+    SELECT * FROM insanlar;
