@@ -11,8 +11,8 @@
     UNION
     SELECT sutun_adi1, sutun_adi2, .. FROM tablo_adi2;
     
-    NOT: UNION operatoru SADECE benzersi degerleri al?r. Benzerli verileri almak
-    için UNION ALL kullan?l?r.
+    NOT: UNION operatoru SADECE benzersi degerleri alir. Benzerli verileri almak
+    için UNION ALL kullanilir.
 ==============================================================================*/ 
   
     CREATE TABLE personel 
@@ -43,14 +43,14 @@
     SELECT isim AS isim_veya_sehir, maas
     FROM personel
     WHERE maas > 4000
-    UNION ALL                  -- UNION ALL kullan?l?rsa tekrarli veriler elenmez.
+    UNION ALL                  -- UNION ALL kullanilirsa tekrarli veriler elenmez.
     SELECT sehir, maas 
     FROM personel
     WHERE maas > 5000;
 
 /* -----------------------------------------------------------------------------
   ORNEK2: Mehmet Ozturk ismindeki kisilerin aldigi maaslari ve Istanbul’daki 
-  personelin maaslarini yüksekten aça?a do?ru s?ralayarak bir tabloda gosteren 
+  personelin maaslarini yüksekten asagi dogru siralayarak bir tabloda gosteren 
   sorguyu yaziniz.    
 ------------------------------------------------------------------------------*/  
     
@@ -94,7 +94,7 @@
     FROM personel_bilgi
     WHERE id = 123456789;
     
-    -- sehir ile tel, maas ile cocuk ayni sutunda birlesti?i icin veri tipleri uygun olmalidir.
+    -- sehir ile tel, maas ile cocuk ayni sutunda birlestigi icin veri tipleri uygun olmalidir.
      
 /*========================= SET OPERATORLERI INTERSECT ========================
     INTERSECT operarotu 2 veya daha fazla Sorgu ifadesinin sonuclarini 
@@ -151,7 +151,7 @@
           
 /*========================= SET OPERATORLERI: MINUS ============================
     MINUS operatoru ilk Sorgu ifadesinde olup da diger sorgu ifadesinde olmayan 
-    verileri dondurur. Yani 1. sorgu ile 2. sorgu arasindaki farkl? olanlar?  dondurur.
+    verileri dondurur. Yani 1. sorgu ile 2. sorgu arasindaki farkli olanlari dondurur.
     
     Syntax:
     ----------
@@ -161,7 +161,7 @@
 ==============================================================================*/
 
 /* -----------------------------------------------------------------------------
-  ORNEK8: 5000’den az maas alan ve Honda calisani olmayanlar?n bilgilerini
+  ORNEK8: 5000’den az maas alan ve Honda calisani olmayanlarin bilgilerini
   listeleyen bir sorgu yaziniz. 
 ------------------------------------------------------------------------------*/ 
     -- 1.YONTEM (maasi 5000 den az olanlar ile sirketi Honda olmayanlari (!=) sec)
@@ -193,6 +193,6 @@
     WHERE isim = 'Mehmet Ozturk'
     MINUS                           -- Sehiri Istanbul olmayan
     SELECT isim,sehir FROM  personel
-    WHERE sehir='?stanbul';
+    WHERE sehir='Istanbul';
     
     -- MINUS'da UNION gibi tekrarli satirlardan sadece bir tanesi listeler.

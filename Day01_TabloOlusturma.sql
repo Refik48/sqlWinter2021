@@ -4,9 +4,9 @@ CREATE TABLE student
 (
         std_id CHAR(3), -- id 3 haneli olsun dedim
         std_name VARCHAR(20),
-        std_age NUMBER           -- SON YAZDIGIM ELEMANIN SONUNA " , " koymuyoruz.
+        std_age NUMBER    -- SON YAZDIGIM ELEMANIN SONUNA " , " koymuyoruz.
 );
--- Tabloya veri eklemek ; Butun degerler girilmek zorundadir eger deger girilmezse hata verir eger parcali giris yapmak istiyorsan 16. satira bak
+-- Tabloya veri eklemek ; Butun degerler girilmek zorundadir eger deger girilmezse hata verir eger parcali giris yapmak istiyorsan 17. satira bak
 INSERT INTO student VALUES('100', 'Kazim Nihat', 24);
 INSERT INTO student VALUES('101', 'Elif Sude', 20);
 INSERT INTO student VALUES('102', 'Ipek', 23);
@@ -21,7 +21,7 @@ SELECT * FROM student; -- * = Her sey anlamindadir. student tablosundaki her sey
 -- Direkt olarak run tusuna basarsan calismayacaktir. Burada run edecegin seyi mouse ile secmen gerekiyor gerekiyor. 
 -- Toplu bir sekilde direkt olarak secebilirsin ama aradaki 19. satir olan Drop'a dikkat et tabloyu siliyor.
 
-DROP TABLE student; -- TABLO SILMEYE YARIYOR.
+DROP TABLE student; -- TABLO SILMEYE YARIYOR.(Icerigini degil kendisini TABLES kategorisinden siler)
 
 -- URUNLER ADINDA TABLO OLUSTUR. ICERISINE id,adi,fiyat,TETT,stok_adedi KOY.
 
@@ -35,7 +35,7 @@ CREATE TABLE urunler
 );
 
 INSERT INTO urunler VALUES (101, 'CIPS', 5.5021, '01-Apr-2021', 500);
-INSERT INTO urunler VALUES(102,'B?SKUVI',2.50,'01-Feb-2024',300);
+INSERT INTO urunler VALUES(102,'BISKUVI',2.50,'01-Feb-2024',300);
 INSERT INTO urunler VALUES(103,'GOFRET',1.50,'05-Jan-2023',120);
 INSERT INTO urunler VALUES(104,'KOLA',4.50,'21-Jun-2025',50);
 INSERT INTO urunler VALUES(105,'AYRAN',2.50,'01-Aug-2021',5);
