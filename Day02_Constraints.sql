@@ -15,11 +15,12 @@ Primary Key (TC no gibi essiz veriler) aslinda birer Constraints'dir.
 
 Yaygin kullanilan kisitlamalar :
 - NOT NULL => Bir sutunun NULL icermemesini garanti eder.
--UNIQUE => Bir sutundaki tum degerlerin BENZERSIZ olmasini garanti eder.
--PRIMARY KEY => Bir sutunun NULL icermemesini ve sutundaki verilerin BENZSERSIZ olmasini garanti eder(Nut Null + Unique = Primary Key)
--FOREIGN KEY => Baska bir tablodaki Primary Key'i referans gostermek icin kullanilir. Boylelikle, tablolar Arasinda iliski kurulmus olur.
--CHECK => Bir sutundaki tum verilerin belirlenen ozel bir sarti saglamasini garanti eder.
--DEFAULT => Herhangi bir deger atanamadiginda Baslangic degerinin atanmasini saglar. (Parcali veri girisi yaptigimizda girmedigimiz degerleri Default ile atayabiliriz)
+- UNIQUE => Bir sutundaki tum degerlerin BENZERSIZ olmasini garanti eder.
+- PRIMARY KEY => Bir sutunun NULL icermemesini ve sutundaki verilerin BENZSERSIZ olmasini garanti eder(Nut Null + Unique = Primary Key)
+- FOREIGN KEY => Baska bir tablodaki Primary Key'i referans gostermek icin kullanilir. Boylelikle, tablolar Arasinda iliski kurulmus olur.
+- CHECK => Bir sutundaki tum verilerin belirlenen ozel bir sarti saglamasini garanti eder.
+- DEFAULT => Herhangi bir deger atanamadiginda Baslangic degerinin atanmasini saglar. 
+    (Parcali veri girisi yaptigimizda girmedigimiz degerleri Default ile atayabiliriz)
 */
 
 CREATE TABLE calisanlar
