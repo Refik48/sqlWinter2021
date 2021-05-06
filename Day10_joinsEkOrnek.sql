@@ -13,7 +13,7 @@ CREATE TABLE bolumler (
       personel_id   NUMBER(4) CONSTRAINT personel_pk PRIMARY KEY,
       personel_isim VARCHAR2(10),
       meslek        VARCHAR2(9),
-      mudur_id      NUMBER(4),
+      mudur_id      NUMBER(4), 
       ise_baslama   DATE,
       maas          NUMBER(7,2),
       bolum_id      NUMBER(2) 
@@ -99,3 +99,5 @@ CREATE TABLE bolumler (
     WHERE  p.mudur_id IN(7788,7698) 
     ORDER BY p.maas DESC;
   
+  commit; -- Veritabanini hemen guncellemeyi saglar. 
+  -- Eger yeni tablo ekleyip onu Java'da Run ettigimizde o tablo gelmiyorsa guncelliyoruz boylece gostermesini sagliyor.
