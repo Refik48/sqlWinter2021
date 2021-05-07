@@ -27,19 +27,19 @@ CREATE TABLE urunler
         musteri_isim VARCHAR2(50),
         CONSTRAINT fk_urunler FOREIGN KEY (ted_vergino) REFERENCES tedarikciler (vergi_no)
 );
-    INSERT INTO urunler VALUES(101, 1001,'Laptop', 'Ayse Can');
-    INSERT INTO urunler VALUES(102, 1002,'Phone', 'Fatma Aka');
-    INSERT INTO urunler VALUES(102, 1003,'TV', 'Ramazan Oz');
-    INSERT INTO urunler VALUES(102, 1004,'Laptop', 'Veli Han');
-    INSERT INTO urunler VALUES(103, 1005,'Phone', 'Canan Ak');
-    INSERT INTO urunler VALUES(104, 1006,'TV', 'Ali Bak');
-    INSERT INTO urunler VALUES(104, 1007,'Phone', 'Aslan Yilmaz');
+    INSERT INTO urunler VALUES(101, 1001, 'Laptop', 'Ayse Can');
+    INSERT INTO urunler VALUES(102, 1002, 'Phone', 'Fatma Aka');
+    INSERT INTO urunler VALUES(102, 1003, 'TV', 'Ramazan Oz');
+    INSERT INTO urunler VALUES(102, 1004, 'Laptop', 'Veli Han');
+    INSERT INTO urunler VALUES(103, 1005, 'Phone', 'Canan Ak');
+    INSERT INTO urunler VALUES(104, 1006, 'TV', 'Ali Bak');
+    INSERT INTO urunler VALUES(104, 1007, 'Phone', 'Aslan Yilmaz');
 
     SELECT * FROM tedarikciler;
     SELECT * FROM urunler;
     
 /*-----------------------------------------------------------------------------
-  ORNEK 1 :  vergi_no’su 101 olan tedarikcinin ismini ‘LG’ ve irtibat_ismi’ni‘Ali Veli’ olarak güncelleyeniz.
+  ORNEK 1 :  vergi_no’su 101 olan tedarikcinin ismini ‘LG’ ve guncelleyin.
 -----------------------------------------------------------------------------*/
     UPDATE tedarikciler
     SET firma_ismi = 'LG'
@@ -67,11 +67,15 @@ CREATE TABLE urunler
     SELECT * FROM tedarikciler;
     
 /*-----------------------------------------------------------------------------
-  ORNEK 4 :  
+  ORNEK 4 :  firma_ismi Samsung olan tedarikcinin irtibat_ismini 'Ayse Yilmaz' olarak güncelleyiniz.
 -----------------------------------------------------------------------------*/  
+    UPDATE tedarikciler
+    SET irtibat_ismi = 'Ayse Yilmaz'
+    WHERE firma_ismi = 'SAMSUNG';
+    SELECT * FROM tedarikciler;
     
  /*-----------------------------------------------------------------------------
-  ORNEK 6 : urunler tablosundaki urun_id de?eri 1004'ten büyük olanlar?n urun_id de?erlerini bir artt?r?n?z
+  ORNEK 6 : urunler tablosundaki urun_id degeri 1004'ten buyuk olanlarin urun_id degerlerini bir arttiriniz.
  -----------------------------------------------------------------------------*/   
     UPDATE urunler 
     SET urun_id = urun_id + 1
@@ -79,20 +83,28 @@ CREATE TABLE urunler
     SELECT * FROM urunler;
     
  /*-----------------------------------------------------------------------------
-  ORNEK 7 : urunler tablosundaki tüm ürünlerin urun_id de?erini ted_vergino sutun de?erleri ile toplayarak güncelleyiniz.
+  ORNEK 7 : urunler tablosundaki tüm urunlerin urun_id degerini ted_vergino sutun degerleri ile toplayarak guncelleyiniz.
  -----------------------------------------------------------------------------*/  
     UPDATE urunler
     SET urun_id = urun_id + ted_vergi_no; -- Butun satirlar icin yapacagimiz icin WHERE ' e gerek yok.
     SELECT * FROM urunler;
     
- /*============================================================================
+ /*-----------------------------------------------------------------------------
    ORNEK 8 : urunler tablosundan Ali Bak’in aldigi urunun ismini, tedarikci 
-   tablosunda irtibat_ismi ‘Adam Eve’ olan firman?n ismi (firma_ismi) ile degistiriniz
-==============================================================================*/   
+   tablosunda irtibat_ismi ‘Adam Eve’ olan firmanin ismi (firma_ismi) ile degistiriniz
+-----------------------------------------------------------------------------*/  
     UPDATE urunler
     SET urun_ismi = (SELECT firma_ismi FROM tedarikciler
                                WHERE irtibat_ismi = 'Adam Eve') -- Atama yaptigim icin hata vermesin diye parantez icine aldim.
     WHERE musteri_isim = 'Ali Bak';
+    
+ /*------------------------------------------------------------------------------
+    ORNEK9: Laptop satin alan musterilerin ismini, Apple’in irtibat_isim'i ile degistirin
+ -----------------------------------------------------------------------------*/   
+    UPDATE urunler
+    SET musteri_isim = (SELECT irtibat_ismi FROM tedarikciler WHERE firma_ismi = 'Apple')
+    WHERE urun_isim = 'Laptop';
+    SELECT * FROM urunler;
     
     
     DROP TABLE tedarikciler;
