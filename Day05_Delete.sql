@@ -101,11 +101,10 @@ TRUNCATE TABLE ogrenciler; -- Tum verileri hassas bir sekilde siler (DDL yani WH
 SELECT * FROM ogrenciler;
 
 /*============================== ON DELETE CASCADE =============================
-  Her defas?nda önce child tablodaki verileri silmek yerine ON DELETE CASCADE
-  silme özelli?ini aktif hale getirebiliriz.
-  Bunun için FK olan sat?r?n en sonuna ON DELETE CASCADE komutunu yazmak yeterli
+  Her defasinda önce child tablodaki verileri silmek yerine ON DELETE CASCADE silme ozelligini aktif hale getirebiliriz.
+  Bunun için FK olan satirinin en sonuna ON DELETE CASCADE komutunu yazmak yeterli
 ==============================================================================*/ 
--- ========================= Tablolar aras?nda ili?ki var ise veriler nas?l silinebilir? =========================
+-- ========================= Tablolar arasinda iliski var ise veriler nasil silinebilir ? =========================
 CREATE TABLE talebeler
 (
         id CHAR(3),  --PK
@@ -117,7 +116,7 @@ CREATE TABLE talebeler
 INSERT INTO talebeler VALUES(123, 'Ali Can', 'Hasan',75);
 INSERT INTO talebeler VALUES(124, 'Merve Gul', 'Ayse',85);
 INSERT INTO talebeler VALUES(125, 'Kemal Yasa', 'Hasan',85);
-INSERT INTO talebeler VALUES(126, 'Nesibe Y?lmaz', 'Ayse',95);
+INSERT INTO talebeler VALUES(126, 'Nesibe Yilmaz', 'Ayse',95);
 INSERT INTO talebeler VALUES(127, 'Mustafa Bak', 'Can',99);
  CREATE TABLE notlar 
 ( 
