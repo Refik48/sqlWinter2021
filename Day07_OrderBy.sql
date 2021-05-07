@@ -54,6 +54,19 @@ CREATE TABLE kisiler
     WHERE soyisim = 'Bulut'
     ORDER BY 2; -- Kacinci sutune gore siralayacagini yaziyor. 2. Sutun isim oldugu icin isim'e gore siraladi.
     
+/*====================== FETCH NEXT, OFFSET (12C VE ÜSTÜ) ======================
+   1) FETCH cumlecigi ile listelenecek kayitlari sinirlandirabiliriz. istersek satir sayisina gore 
+   istersek de toplam satir sayisinin belli bir yuzdesine gore sinirlandirma koymak mumkundur. 
+   Syntax
+   ---------
+   FETCH NEXT satir_sayisi ROWS ONLY;
+   FETCH NEXT satir_yuzdesi PERCENT ROWS ONLY;
+   
+   2) OFFSET Cumlecigi ile de listenecek olan satirlardan sirasiyla istedigimiz kadarini atlayabiliriz.  
+   Syntax
+   ----------
+   OFFSET satir_sayisi ROWS;
+==============================================================================*/ 
 /* ----------------------------------------------------------------------------
   ORNEK 6 : Maas'i en yuksek 3 kisinin bilgilerini listeleyen sorguyu yaziniz
 -----------------------------------------------------------------------------*/
@@ -76,18 +89,6 @@ CREATE TABLE kisiler
     OFFSET 3 ROWS    -- Ilk 3 kaydi atlayacak
     FETCH NEXT 3 ROWS ONLY; -- Sonraki 3 kaydi sectik.
 
-/*====================== FETCH NEXT, OFFSET (12C VE ÜSTÜ) ======================
-   1) FETCH cumlecigi ile listelenecek kayitlari sinirlandirabiliriz. istersek satir sayisina gore 
-   istersek de toplam satir sayisinin belli bir yuzdesine gore sinirlandirma koymak mumkundur. 
-   Syntax
-   ---------
-   FETCH NEXT satir_sayisi ROWS ONLY;
-   FETCH NEXT satir_yuzdesi PERCENT ROWS ONLY;
-   
-   2) OFFSET Cumlecigi ile de listenecek olan satirlardan sirasiyla istedigimiz kadarini atlayabiliriz.  
-   Syntax
-   ----------
-   OFFSET satir_sayisi ROWS;
-==============================================================================*/ 
+
 
 

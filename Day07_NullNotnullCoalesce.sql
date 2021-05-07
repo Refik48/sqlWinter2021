@@ -67,3 +67,7 @@ CREATE TABLE insanlar
             ssn = COALESCE (ssn, 'NO SSN');
 
     SELECT * FROM insanlar;
+    
+    
+    
+    
