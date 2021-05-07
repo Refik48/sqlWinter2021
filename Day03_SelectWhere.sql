@@ -27,22 +27,22 @@ SELECT *FROM ogrenciler
 WHERE adres = 'Ankara';
 
 SELECT * FROM ogrenciler
-WHERE id = 123; -- SADECE SORGULARKEN yani burada DATA TYPE'i NUMBER olanlari ,
+WHERE id = 123; -- SORGULARKEN yani burada DATA TYPE'i NUMBER olanlari ,
 -- ' ' icine yazmaktansa normal bir sekilde yazip aratmak daha saglikli sonuclar verir.
 -- ' ' icinde olmaz mi ? Olur fakat hata verebilir ve hata verirse nerede oldugunu bulamayiz o yuzden ' ' icinde yazmamak daha iyi.
 /*
-=                   ==> Esit mi
->                   ==> Buyuk mu ?
-<                   ==> Kucuk mu ?
->=                ==> Buyuk esit mi ?
-<=                ==> Kucuk esit mi ?
-<>                ==> Esit degil mi ?
-AND            ==> Ve Operator'u
-OR               ==> Veya Operator'u
-BETWEEN  ==> Belirtilen degerler arasindaki veriler icin. Iki mantiksal ifade ile tanimlayabilecegimiz durumlari tek komutla yazabilme imkani verir.
+=                  ==> Esit mi ?
+>                  ==> Buyuk mu ?
+<                  ==> Kucuk mu ?
+>=               ==> Buyuk esit mi ?
+<=               ==> Kucuk esit mi ?
+<>               ==> Esit degil mi ?
+AND           ==> Ve Operator'u
+OR              ==> Veya Operator'u
+BETWEEN ==> Belirtilen degerler arasindaki veriler icin. Iki mantiksal ifade ile tanimlayabilecegimiz durumlari tek komutla yazabilme imkani verir.
 NOT BETWEEN ==> Arasinda olmayanlari gosterir.
-IN                 ==> Bir sutun icin bir cok uygun kosulu secmek icin
-LIKE            ==> sorgulama yaparken belirli patternleri kullanabilmemize olanak saglar. 
+IN               ==> Bir sutun icin bir cok uygun kosulu secmek icin
+LIKE          ==> sorgulama yaparken belirli patternleri kullanabilmemize olanak saglar. 
     Pattern icin % ---> 0 veya daha fazla karakteri belirtir,
     Pattern icin _ ---> Tek bir karakteri temsil eder.
 */
@@ -54,11 +54,11 @@ CREATE TABLE personel
         maas NUMBER(5)
 );
 INSERT INTO personel VALUES('10001', 'Ahmet Aslan', 7000);
-INSERT INTO personel VALUES( '10002', 'Mehmet Y?lmaz' ,12000);
+INSERT INTO personel VALUES( '10002', 'Mehmet Yilmaz' ,12000);
 INSERT INTO personel VALUES('10003', 'Nihat ', 7215);
 INSERT INTO personel VALUES('10004', 'Veli Han', 5000);
 INSERT INTO personel VALUES('10005', 'Mustafa Ali', 5500);
-INSERT INTO personel VALUES('10006', 'Ay?e Can', 4000);
+INSERT INTO personel VALUES('10006', 'Ayse Can', 4000);
 
 SELECT * FROM personel;
 
@@ -132,3 +132,17 @@ WHERE maas NOT LIKE '____' ; -- Maas'i 4 basamakli olmayanlari gosterir.
 
 SELECT * FROM personel
 WHERE isim LIKE '_e%z%'; -- 2. harfi e olan geri kalanin z olan ismi verir. (Son harf dahil)
+
+-- DEVAMI "Day04_Select" kisminda.
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
