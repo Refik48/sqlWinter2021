@@ -93,7 +93,7 @@ DROP TABLE adresler; -- (adresler Child) -- Once CHILD DROP edilmeli daha sonra 
 ------------------------------------------2. YONTEM-----------------------------------------------
 CREATE TABLE adresler
 (
-       adres_id CHAR(5) REFERENCES calisanlar(id) , -- Burasi FK olacaksa buraya calisanlar(id)'yi refere ediyoruz 
+       adres_id CHAR(5) , -- Burasi FK olacaksa buraya calisanlar(id)'yi refere ediyoruz 
         sokak VARCHAR(50),
         cadde VARCHAR(30),
         sehir VARCHAR(15),
