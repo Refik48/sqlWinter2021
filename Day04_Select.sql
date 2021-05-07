@@ -30,17 +30,25 @@ CREATE TABLE kelimeler
      
     SELECT * FROM kelimeler;
     
+ /* -----------------------------------------------------------------------------
+  ORNEK 1 : Icerisinde 'hi' bulunan kelimeleri listeleyeniz
+ -----------------------------------------------------------------------------*/ 
     SELECT * FROM kelimeler
     WHERE REGEXP_LIKE (kelime, 'hi'); -- hi yanana olanlari sorguluyor.
     
     SELECT * FROM kelimeler
     WHERE REGEXP_LIKE (kelime, '[hi]'); -- Koseli parantez kullanimi ; bir nevi veya demektir . Icerisinde h veya i bulunan kelimeler nelerdir diye sorgular.
-    
-    -- Icerisinde ot veya at harfleri olan kelimeleri sorgulayin. VEYA islem | karakteri ile yapilir.
-    
+
+ /* -----------------------------------------------------------------------------
+  ORNEK 2 : Icerisinde 'ot' veya 'at' bulunan kelimeleri listeleyeniz
+ -----------------------------------------------------------------------------*/  
+     --VEYA islem | karakteri ile yapilir.
     SELECT * FROM kelimeler
     WHERE REGEXP_LIKE (kelime, 'ot|at'); -- Tirnak icerisinde olmazsa calismaz
     
+ /* -----------------------------------------------------------------------------
+  ORNEK 3 : Icerisinde 'ot' veya 'at' bulunan kelimeleri buyuk-kucuk harfe dikkat etmeksizin listeleyeniz
+ -----------------------------------------------------------------------------*/    
     SELECT * FROM kelimeler
     WHERE REGEXP_LIKE (lower(kelime),'ot|at');  -- Case Sensitive'i ortadan kaldirir.
     
@@ -49,18 +57,24 @@ CREATE TABLE kelimeler
     -- c sensitive
     -- i insensitive icin kullaniliyor.
     
-    -- hi veya ho ile baslayan kelimeleri sorgulayin
+   /* -----------------------------------------------------------------------------
+  ORNEK 4 : 'ho' veya 'hi' ile baslayan kelimeleri buyuk-kucuk harfe dikkat etmeksizin listeleyeniz
+ -----------------------------------------------------------------------------*/   
     -- Baslama icin ^ karakteri kuillanilir.
     SELECT * FROM kelimeler
     WHERE REGEXP_LIKE(kelime, '^hi|^ho', 'i');
     
-    -- t veya m ile biten kelimeleri Buyuk kucuk harf duyarsiz bir sekilde listeleyin. 
+   /* -----------------------------------------------------------------------------
+  ORNEK 5 : Sonu 't' veya 'm' ile bitenleri buyuk-kucuk harfe dikkat etmeksizin listeleyeniz
+ -----------------------------------------------------------------------------*/   
     -- Bitis icin $ isareti kullanilir.
     
     SELECT * FROM kelimeler
     WHERE REGEXP_LIKE (kelime, 't$|m$', 'i');
     
-    -- h ile baslayin t ile biten 3 harfli kelimeleri case sensitive duyarsiz bir sekilde listeleyin.
+  /* -----------------------------------------------------------------------------
+  ORNEK 6 : h ile baslayip t ile biten 3 harfli kelimeleri buyuk-kucuk harfe dikkat etmeksizin listeleyeniz
+ -----------------------------------------------------------------------------*/ 
     
     SELECT * FROM kelimeler -- [ ] koseli parantez bir harf gosterir
     WHERE REGEXP_LIKE (kelime, 'h[a-z0-9]t', 'i'); -- h ile basliyor t ile bitiyor ve aradaki her sey onemsiz ise [] kullanabiliriz.
@@ -69,19 +83,26 @@ CREATE TABLE kelimeler
      SELECT * FROM kelimeler
     WHERE REGEXP_LIKE (kelime, 'h[ao]t', 'i'); -- [ ] icine ao yazildiginda ; kelime icinde a veya o olanlari getir anlaminda kullaniliyor.
     
-    -- Ilk harfi h, son harfi t olup 2.harfi a veya i olan 3 harfli kelimelerin tum bilgilerini sorgulayim.
+  /* -----------------------------------------------------------------------------
+  ORNEK 7 : Ilk harfi h, son harfi t olup 2.harfi a veya i olan 3 harfli kelimelerin tum bilgilerini sorgulayalim.
+ -----------------------------------------------------------------------------*/ 
     SELECT * FROM kelimeler
     WHERE REGEXP_LIKE (kelime, 'h[ai]t', 'i'); -- [ ] koseli parantez bir harf gosterir
     
-     -- ?çinde m veya i veya e olan kelimelerin tüm bilgilerini listeleyiniz.
+     /* -----------------------------------------------------------------------------
+  ORNEK 8 : Icerisinde m veya i veya e olan kelimelerin tum bilgilerini listeleyiniz.
+ -----------------------------------------------------------------------------*/     
     SELECT * FROM kelimeler
     WHERE REGEXP_LIKE(kelime,'h[mie](*)');
     
-    -- içerisinde en az 2 adet oo bar?nd?ran kelimelerin tüm bilgilerini listeleyiniz.
-    -- {2}
+  /* -----------------------------------------------------------------------------
+  ORNEK 9 : Icerisinde en az 2 adet oo barindiran kelimelerin tum bilgilerini listeleyiniz.
+-----------------------------------------------------------------------------*/ 
     SELECT * FROM kelimeler
     WHERE REGEXP_LIKE(kelime,'[o]{2}','i'); 
-  
+  /* -----------------------------------------------------------------------------
+  ORNEK 10 : Icerisinde en az 2 adet aa barindiran kelimelerin tum bilgilerini listeleyiniz.
+-----------------------------------------------------------------------------*/ 
     SELECT * FROM kelimeler
     WHERE REGEXP_LIKE(kelime,'[a]{2}','i'); 
     
