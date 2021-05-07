@@ -3,12 +3,13 @@ C => CREATE TABLE
 R => SELECT * FROM student
 U => INSTERT INTO student VALUES
 D => DROP TABLE student
-Gecen ders bunlari gorduk bugun ki derste "CONSTRAINTS (KISITLAMALAR)"i gorecegiz.
+Gecen ders bunlari gorduk bugun ki derste "CONSTRAINTS (KISITLAMALAR)'i gorecegiz.
 
 SQL kisitlamalari ile bir tablodaki veriler icin kurallar belirlenebilir.
 Kisitlamalar ile verinin turu ve alacagi degerlere sinirlandirma koyulabilir.
 Boylece, tablodaki verinin dogrulugu ve guvenirligi saglanabilir.
-Eger, bir veri islemi sirasinda kisitlamaya uygun olmayan bir islem gerceklesirse bu islem kisitlama sayesinde gecersiz olacagindan otomatik olarak iptal edilir.
+Eger, bir veri islemi sirasinda kisitlamaya uygun olmayan bir islem gerceklesirse,
+bu islem kisitlama sayesinde gecersiz olacagindan otomatik olarak iptal edilir.
 Kisitlamalar "Sutun" veya "Tablo" seviyesinde uygulanabilir. Eger tablo seviyesinde konulursa tum tabloyu kapsamis olur.
 Ornegin : Null olmasin bos deger girilemesin diye kisitlama getirebilirim. 
 Primary Key (TC no gibi essiz veriler) aslinda birer Constraints'dir.
@@ -17,7 +18,7 @@ Yaygin kullanilan kisitlamalar :
 - NOT NULL => Bir sutunun NULL icermemesini garanti eder.
 - UNIQUE => Bir sutundaki tum degerlerin BENZERSIZ olmasini garanti eder.
 - PRIMARY KEY => Bir sutunun NULL icermemesini ve sutundaki verilerin BENZSERSIZ olmasini garanti eder(Nut Null + Unique = Primary Key)
-- FOREIGN KEY => Baska bir tablodaki Primary Key'i referans gostermek icin kullanilir. Boylelikle, tablolar Arasinda iliski kurulmus olur.
+- FOREIGN KEY => Baska bir tablodaki Primary Key'i referans gostermek icin kullanilir. Boylelikle tablolar Arasinda iliski kurulmus olur.
 - CHECK => Bir sutundaki tum verilerin belirlenen ozel bir sarti saglamasini garanti eder.
 - DEFAULT => Herhangi bir deger atanamadiginda Baslangic degerinin atanmasini saglar. 
     (Parcali veri girisi yaptigimizda girmedigimiz degerleri Default ile atayabiliriz)
@@ -26,9 +27,9 @@ Yaygin kullanilan kisitlamalar :
 CREATE TABLE calisanlar
 (
         id CHAR(5) PRIMARY KEY, -- id degiskeni 5 haneli olacaktir. 
-        -- Primary Key'i sonradan ekledikten sonra Kullanilmasi icin ya Update etcez ya da Drop yaptiktan sonra tekrardan Create edecegim.
+        -- Primary Key'i sonradan eklersem kullanilmasi icin ya Update etcez ya da Drop yaptiktan sonra tekrardan Create edecegim.
         isim VARCHAR2(50) NOT NULL UNIQUE, -- isim'e 50 karaktere kadar veri girebilirim.
-        maas NUMBER(5) NOT NULL, -- maas'in karakteri max 5 haneli olacak ve
+        maas NUMBER(5) NOT NULL, -- maas'in karakteri max 5 haneli olacak ve NULL degeri icermeyecek.
         ise_baslama DATE
 );
 
@@ -55,7 +56,7 @@ DELETE calisanlar WHERE id = '10002'; -- id'si 10002 olan veriyi siler.
 CREATE TABLE calisanlar
 (
         id CHAR(5), -- id degiskeni 5 haneli olacaktir. 
-        -- Primary Key'i sonradan ekledikten sonra Kullanilmasi icin ya Update etcez ya da Drop yaptiktan sonra tekrardan Create edecegim.
+        -- Primary Key'i sonradan eklersem kullanilmasi icin ya Update etcez ya da Drop yaptiktan sonra tekrardan Create edecegim.
         isim VARCHAR2(50), -- isim'e 50 karaktere kadar veri girebilirim.
         maas NUMBER(5) NOT NULL, -- maas'in karakteri max 5 haneli olacak ve
         ise_baslama DATE,
