@@ -13,7 +13,6 @@ CREATE TABLE mart_satislar
         musteri_isim varchar2(50), 
         urun_isim varchar2(50)
     );
-    
     CREATE TABLE nisan_satislar 
     (
         urun_id number(10),
@@ -37,6 +36,7 @@ CREATE TABLE mart_satislar
     
     SELECT * FROM mart_satislar;
     SELECT * FROM nisan_satislar;
+    
     DELETE FROM nisan_satislar;
     
     /* -----------------------------------------------------------------------------
@@ -45,7 +45,7 @@ CREATE TABLE mart_satislar
   MUSTERI_ISIM 'lerini listeleyen bir sorgu yaziniz. 
  -----------------------------------------------------------------------------*/       
     -- tablolara kisa isim vermek mumkundur. Boylece sorgularimizin daha kisa gozukmesini saglabiliriz.
-    -- AS  -> bir sutuna k?sa isim veriyor.
+    -- AS  -> bir sutuna kisa isim veriyor.
     -- Bir sorgu icerisinde  tabloya da kisa isim vermek mumkun. 
     -- tablo_Adi kisa_isim
     
@@ -55,7 +55,6 @@ CREATE TABLE mart_satislar
     
     -- WHERE urun_id IN(SELECT urun_id FROM nisan_satislar
    --                                  WHERE mart_satislar.urun_id = nisan_satislar.urun_id);
-   
    
    /* -----------------------------------------------------------------------------
   ORNEK 2 : Her iki ayda da satilan urunlerin URUN_ISIM'lerini ve bu urunleri
