@@ -25,19 +25,19 @@ CREATE TABLE manav
     INSERT INTO manav VALUES( 'Ayse', 'Uzum', 4);
     INSERT INTO manav VALUES( 'Ali', '', 2);
 /* ----------------------------------------------------------------------------
-  ORNEK 1 : satilan farkl? meyve turlerinin sayisini  listeyen sorguyu yaziniz.
+  ORNEK 1 : Satilan farkli meyve turlerinin sayisini  listeyen sorguyu yaziniz.
 -----------------------------------------------------------------------------*/
     SELECT DISTINCT COUNT(urun_adi) AS urun_sayisi
     FROM manav;
     
 /* ----------------------------------------------------------------------------
-  ORNEK 2 : satilan meyve ve isimlerin farkli olanlarini  listeyen sorguyu yaziniz.
+  ORNEK 2 : Satilan meyve ve isimlerin farkli olanlarini  listeyen sorguyu yaziniz.
 -----------------------------------------------------------------------------*/    
     SELECT DISTINCT urun_adi, isim -- 2 sutun icin beraber olarak benzerli olanlari cikariyor.
     FROM manav;
  
  /* ----------------------------------------------------------------------------
-  ORNEK 3 : satilan meyvelerin, urun miktarlarinin benzersiz toplamlarini listeleyen sorguyu yaziniz.
+  ORNEK 3 : Satilan meyvelerin, urun miktarlarinin benzersiz toplamlarini listeleyen sorguyu yaziniz.
 -----------------------------------------------------------------------------*/       
     SELECT SUM(DISTINCT urun_miktari) AS urun_sayisi
     FROM manav;

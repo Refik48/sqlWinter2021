@@ -1,5 +1,4 @@
 /*==================== SET OPERATORLERI: UNION, UNION ALL======================
-    
     UNION, UNION ALL, INTERSECT, ve MINUS gibi SET operatorleri yardimiyla coklu Sorgular birlestirilebilirler.
     UNION :  Bir SET operatorudur. 2 veya daha fazla Sorgu ifadesinin sonuc kumelerini birlesitirerek tek bir sonuc kumesi olusturur.    
    
