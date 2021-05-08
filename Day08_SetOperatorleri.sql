@@ -1,5 +1,6 @@
 /*==================== SET OPERATORLERI: UNION, UNION ALL======================
-    UNION, UNION ALL, INTERSECT, ve MINUS gibi SET operatorleri yardimiyla coklu Sorgular birlestirilebilirler.
+    UNION, UNION ALL, INTERSECT, ve MINUS gibi SET operatorleri yardimiyla coklu sorgular birlestirilebilirler.
+    
     UNION :  Bir SET operatorudur. 2 veya daha fazla Sorgu ifadesinin sonuc kumelerini birlesitirerek tek bir sonuc kumesi olusturur.    
    
     NOT:  Birlesik olan olan Sorgu ifadesinin veri turu diger sorgulardaki ifadelerin veri turu ile uyumlu olmalidir.
@@ -10,8 +11,11 @@
     UNION
     SELECT sutun_adi1, sutun_adi2, .. FROM tablo_adi2;
     
-    NOT: UNION operatoru SADECE benzersi degerleri alir. Benzerli verileri almak
-    için UNION ALL kullanilir.
+    NOT : UNION operatoru SADECE benzersi degerleri alir. Benzerli verileri almak icin UNION ALL kullanilir.
+    NOT : Sutun birlestirmek icin => SET / Tablo birlestirmek icin JOIN komutu kullanilir.
+     
+    Birlestirilen sutunlarin veri tipleri ayni olmak zorunda. varchar ise varchar olmali gibi.
+    Secilenlerden birinin uzunlugu 9 digerinin 2 ise SQL buyuk olanin uzunlugunu kullanir ve 9 kabul eder.
 ==============================================================================*/ 
   
     CREATE TABLE personel 
@@ -39,11 +43,11 @@
   alinan sehirleri gosteren sorguyu yaziniz
 ------------------------------------------------------------------------------*/
     
-    SELECT isim AS isim_veya_sehir, maas
-    FROM personel
-    WHERE maas > 4000
+    SELECT isim AS isim_veya_sehir, maas -- isimler ile sehirleri birlestirdi ve tek sutun halini getirdi. 
+    FROM personel                                     -- Birlestirilen sutunlarin veri tipleri ayni olmak zorunda. varchar ise varchar olmali gibi.
+    WHERE maas > 4000                           -- Secilenlerden birinin uzunlugu 9 digerinin 2 ise SQL buyuk olanin uzunlugunu kullanir ve 9 kabul eder.
     UNION ALL                  -- UNION ALL kullanilirsa tekrarli veriler elenmez.
-    SELECT sehir, maas 
+    SELECT sehir, maas  
     FROM personel
     WHERE maas > 5000;
 
@@ -52,8 +56,7 @@
   personelin maaslarini yüksekten asagi dogru siralayarak bir tabloda gosteren 
   sorguyu yaziniz.    
 ------------------------------------------------------------------------------*/  
-    
-    SELECT maas,isim AS isim_veya_sehir
+    SELECT maas,isim AS isim_veya_sehir -- Her iki select kisminda da birlestirilecek elemanlar 
     FROM personel
     WHERE isim = 'Mehmet Ozturk'
     UNION
@@ -113,7 +116,6 @@
   Personel_bilgi tablosundan 2 veya 3 cocugu olanlarin id lerini sorgulayiniz.
   Bu iki sorguyu INTERSECT ile birlesitiriniz.
 ------------------------------------------------------------------------------*/
-    
     SELECT id FROM personel
     WHERE sehir IN('Istanbul','Ankara')
     INTERSECT
@@ -123,8 +125,7 @@
 /* -----------------------------------------------------------------------------
   ORNEK6: Honda,Ford ve Tofas’ta calisan ortak isimde personel varsa listeleyin
 ------------------------------------------------------------------------------*/  
-    
-    SELECT isim
+    SELECT isim -- Eger ben burada WHERE sirket IN( 'Honda', 'Ford', 'Tofas');  olsaydi butun isimleri listelerdi. Ortak olanlar icin INTERSECT kullanmaliyim.
     FROM personel
     WHERE sirket = 'Honda'
     INTERSECT
@@ -147,10 +148,14 @@
     FROM personel
     WHERE sirket = 'Ford';
    
-          
 /*========================= SET OPERATORLERI: MINUS ============================
-    MINUS operatoru ilk Sorgu ifadesinde olup da diger sorgu ifadesinde olmayan 
-    verileri dondurur. Yani 1. sorgu ile 2. sorgu arasindaki farkli olanlari dondurur.
+    MINUS operatoru ilk Sorgu ifadesinde olup da diger sorgu ifadesinde olmayan verileri dondurur. 
+    Yani 1. sorgu ile 2. sorgu arasindaki farkli olanlari dondurur.
+    
+    A ve B kumemiz olsun. A'nin B'den farklarini bulmak icin MINUS kullaniriz.
+    A
+    MINUS
+    B seklinde yazilir.
     
     Syntax:
     ----------
@@ -158,7 +163,6 @@
     MINUS
     SELECT sutun_adi1, sutun_adi2, .. FROM tablo_adi2;
 ==============================================================================*/
-
 /* -----------------------------------------------------------------------------
   ORNEK8: 5000’den az maas alan ve Honda calisani olmayanlarin bilgilerini
   listeleyen bir sorgu yaziniz. 
@@ -170,7 +174,7 @@
     INTERSECT
     SELECT isim, maas ,sirket
     FROM personel
-    WHERE sirket != 'Honda';
+    WHERE sirket != 'Honda'; -- MINUS yerine bu sekilde de kullanabilirdik.
     
     -- 2.YONTEM (maasi 5000 den az olanlar ile sirketi Honda'dan farkli olanlari sec)
     
@@ -181,13 +185,11 @@
     SELECT isim, maas ,sirket
     FROM personel
     WHERE sirket = 'Honda';
-   
     
 /* -----------------------------------------------------------------------------
   ORNEK 8 : Ismi Mehmet Ozturk olup Istanbul’da calismayanlarin isimlerini ve 
   sehirlerini listeleyen sorguyu yaziniz.
 ------------------------------------------------------------------------------*/
-    
     SELECT isim, sehir  FROM personel
     WHERE isim = 'Mehmet Ozturk'
     MINUS                           -- Sehiri Istanbul olmayan
@@ -195,3 +197,9 @@
     WHERE sehir='Istanbul';
     
     -- MINUS'da UNION gibi tekrarli satirlardan sadece bir tanesi listeler.
+    
+    
+    
+    
+    
+    
