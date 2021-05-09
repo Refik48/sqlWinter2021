@@ -1,29 +1,23 @@
-/*============================== JOIN ?SLEMLER? ===============================
+/*============================== JOIN ISLEMLERI ===============================
+    Set Operatorleri (Union,Intersect,Minus) farkli tablolardaki sutunlari birlestirmek kullanilir.
     
-    Set Operatorleri (Union,Intersect,Minus) farkl? tablolardaki sutunlari 
-    birlestirmek kullanilir.
+    Join islemleri ise farkli Tablolari birlestirmek icin kullanilir. 
+    Diger bir ifade ile farkli tablolardaki secilen sutunlar ile yeni bir tablo olusturmak icin kullanilabilir.
     
-    Join islemleri ise farkl? Tablolari birlestirmek icin kullanilir. Diger 
-    bir ifade ile farkli tablolardaki secilen sutunlar ile yeni bir tablo 
-    olusturmak icin kullanilabilir.
-    
-    JOIN islemleri Iliskisel Veritabanlari icin cok onemli bir ozelliktir. Çunku
-    Foreign Key'ler ile iliskili olan tablolardan istenilen sutunlari cekmek 
-    icin JOIN islemleri kullanilabilir.
+    JOIN islemleri Iliskisel Veritabanlari icin cok onemli bir ozelliktir. 
+    Cunku Foreign Key'ler ile iliskili olan tablolardan istenilen sutunlari cekmek icin JOIN islemleri kullanilabilir.
     
     ORACLE SQL'de 4 Cesit Join isemi kullanilabilmektedir.
-    1) FULL JOIN:  Tablodaki tum sonuclari gosterir
-    2) INNER JOIN:  Tablolardaki ortak olan sonuc kumesini gosterir
-    3) LEFT JOIN:  Ilk tabloda (Sol) olup digerinde olmayan sonuclari gosterir
-    4) RIGHT JOIN: Sadece Ikinci tabloda olan tum sonuclari gosterir
-   
+    1) FULL JOIN:  Tablodaki tum sonuclari gosterir.
+    2) INNER JOIN:  Tablolardaki ortak olan sonuc kumesini gosterir.
+    3) LEFT JOIN:  Ilk tabloda (Sol) olup digerinde olmayan sonuclari gosterir.
+    4) RIGHT JOIN: Sadece Ikinci tabloda olan tum sonuclari gosterir.
 ==============================================================================*/   
     CREATE TABLE sirketler 
     (
         sirket_id NUMBER(9), 
         sirket_isim VARCHAR2(20)
     );
-    
     INSERT INTO sirketler VALUES(100, 'Toyota');
     INSERT INTO sirketler VALUES(101, 'Honda');
     INSERT INTO sirketler VALUES(102, 'Ford');
@@ -35,7 +29,6 @@
         sirket_id NUMBER(9), 
         siparis_tarihi DATE
     );
-    
     INSERT INTO siparisler VALUES(11, 101, '17-Apr-2020');
     INSERT INTO siparisler VALUES(22, 102, '18-Apr-2020');
     INSERT INTO siparisler VALUES(33, 103, '19-Apr-2020');
@@ -49,7 +42,6 @@
     DROP TABLE siparisler;
     
 /*=============================== FULL JOIN  ==================================
-    
     FULL JOIN, Her iki tablo icin secilen sutunlara ait olan tum satirlari getirmek icin kullanilir. 
     FULL JOIN -> Hepsini gosteriyor.
     JOIN -> 
@@ -63,15 +55,15 @@
 ==============================================================================*/   
    
 /* -----------------------------------------------------------------------------
-  ORNEK1: sirketler ve siparisler ad?ndaki tablolarda yer alan sirket_isim, 
+  ORNEK 1 : sirketler ve siparisler adindaki tablolarda yer alan sirket_isim, 
   siparis_id ve siparis_tarihleri listeleyen bir sorgu yaziniz.
 ------------------------------------------------------------------------------*/ 
     SELECT s.sirket_isim, sp.siparis_id,  sp.siparis_tarihi, sp.sirket_id
     FROM sirketler s
-    FULL JOIN siparisler sp
+    FULL JOIN siparisler sp 
     ON s.sirket_id = sp.sirket_id; -- 2 tablonun ortak verisi id'ler o yuzden 2 tablonun ortak noktalarina gore id islemini yap anlaminda yaziyorum.
-    --FULL JOIN'de iki tabloda var olam tum satirlar gosterilir.
-    -- Bir olup da digerlerinde olmayan alanlar bos birakildi.
+    --FULL JOIN'de iki tabloda var olan tum satirlar gosterilir.
+    -- Bir olupta digerlerinde olmayan alanlar bos birakildi.
     -- Join isleminda genelde iki tablodaki ortak olarak bulunan sutun, ON cumleciginde kosul yapisi olarak kullanilir.
     -- Karsiligi olmayan yerlere NULL atamasi yapar.
 
@@ -86,24 +78,22 @@
     ON tablo1.sutun = tablo2.sutun;
 ================================================================================  
 /* -----------------------------------------------------------------------------
-  ORNEK2: Iki Tabloda sirket_id’si ayni olanlarin sirket_ismi, siparis_id ve
+  ORNEK 2 : Iki Tabloda sirket_id’si ayni olanlarin sirket_ismi, siparis_id ve
   siparis_tarihleri listeleyen bir sorgu yaziniz.
 ------------------------------------------------------------------------------*/
 
-     SELECT s.sirket_isim, sp.siparis_id, sp.siparis_tarihi, sp.sirket_id
+    SELECT s.sirket_isim, sp.siparis_id, sp.siparis_tarihi, sp.sirket_id
     FROM sirketler s
     INNER JOIN siparisler sp
     ON s.sirket_id = sp.sirket_id;
     
     -- INNER JOIN ile sadece iki tabloki ortak olan satilar secilir.
-    -- Diger ifadeyle iki tablodaki ortak olan sirket_id degerleri icin ilgili 
-    -- sutunlar listenir.
+    -- Diger ifadeyle iki tablodaki ortak olan sirket_id degerleri icin ilgili sutunlar listenir.
     
     -- INNER anahtar kelimesi opsiyoneldir.
         
 /*=============================== LEFT JOIN  ==================================
-    LEFT JOIN, 1. tablodan (sol tablo) SELECT ile ifade edilen sutunlara ait tum
-    satirlari getirir. 
+    LEFT JOIN, 1. tablodan (sol tablo) SELECT ile ifade edilen sutunlara ait tum satirlari getirir. 
     Ancak, diger tablodan sadece ON ile belirtilen kosula uyan satirlari getirir. 
         
     Syntax
@@ -115,7 +105,7 @@
 ==============================================================================*/  
             
 /* -----------------------------------------------------------------------------
-  ORNEK3: sirketler tablosundaki tum sirketleri ve bu sirketlere ait olan 
+  ORNEK 3 : sirketler tablosundaki tum sirketleri ve bu sirketlere ait olan 
   siparis_id ve siparis_tarihleri listeleyen bir sorgu yaziniz.
 ------------------------------------------------------------------------------*/   
     SELECT s.sirket_isim, sp.siparis_id, sp.siparis_tarihi, sp.sirket_id, s.sirket_id
@@ -123,12 +113,10 @@
     LEFT JOIN siparisler sp
     ON s.sirket_id = sp.sirket_id;
     -- Left Join’de ilk tablodaki tum satirlar gosterilir.
-    -- Ilk tablodaki satirlara 2.tablodan kosula uyan ortak satirlar gosterilir
-    -- ancak ortak olmayan kisimlar bos kalir
+    -- Ilk tablodaki satirlara 2.tablodan kosula uyan ortak satirlar gosterilir ancak ortak olmayan kisimlar bos kalir
           
 /*=============================== RIGHT JOIN  ==================================
-    RIGHT JOIN, 2. tablodan (sag tablo) SELECT ile ifade edilen sutunlara ait tum
-    satirlari getirir. 
+    RIGHT JOIN, 2. tablodan (sag tablo) SELECT ile ifade edilen sutunlara ait tum satirlari getirir. 
     Ancak, diger tablodan sadece ON ile belirtilen kosula uyan satirlari getirir. 
         
     Syntax
@@ -140,8 +128,8 @@
 ==============================================================================*/   
       
 /* -----------------------------------------------------------------------------
-  ORNEK4: siparisler tablosundaki tum siparis_id ve siparis_tarihleri ile 
-  bunlara kar??l?k gelen sirket_isimlerini listeleyen bir sorgu yaziniz.
+  ORNEK 4 : siparisler tablosundaki tum siparis_id ve siparis_tarihleri ile 
+  bunlara karsilik gelen sirket_isimlerini listeleyen bir sorgu yaziniz.
 ------------------------------------------------------------------------------*/     
     SELECT s.sirket_isim, sp.siparis_id, sp.siparis_tarihi, sp.sirket_id
     FROM sirketler s
@@ -149,8 +137,7 @@
     ON s.sirket_id = sp.sirket_id;
     
     -- Right Join’de 2. tablodaki tum satirlar gosterilir.
-    -- 2 tablodaki satirlara 1.tablodan kosula uyan ortak satirlar gosterilir
-    -- ancak ortak olmayan kisimlar bos kalirir.
+    -- 2 tablodaki satirlara 1.tablodan kosula uyan ortak satirlar gosterilir ancak ortak olmayan kisimlar bos kalirir.
 
 
 
